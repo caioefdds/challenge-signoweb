@@ -1,0 +1,252 @@
+/* Flex Presets */
+.container {
+	max-width: 800px;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+}
+.container-lg {
+	max-width: 1200px;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.space-arround {
+    justify-content: space-around;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.text-center {
+    justify-content: center;
+    text-align: center;
+}
+
+.bg-light{
+    background-color: rgb(255, 255, 255, 0.9);
+}
+
+.poll {
+    display: flex;
+    width: 100%;
+    background-color: rgb(212, 212, 212);
+    word-wrap: break-word;
+    justify-content: space-around;
+    border-radius: 2px;
+    flex-wrap: wrap;
+    border: 1px solid rgb(0, 0, 31);
+}
+
+.poll-show {
+    display: flex;
+    width: 100%;
+    background-color: rgb(255, 255, 255, 0.9);
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.item-form {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.item-vote {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vote-content {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item-vote:nth-child(1) {
+    width: 400px;
+    
+}
+
+.item-vote:nth-child(2) {
+    width: 400px;
+}
+
+.item:nth-child(1) {
+    display: flex;
+    width: 600px;
+    flex-grow: 0;
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.item:nth-child(2) {
+    width: 120px;
+    text-align: center;
+}
+
+.item:nth-child(3) {
+    min-width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-warning {
+    background-color: rgb(255, 196, 0) !important;
+    color: black;
+}
+
+.color-danger {
+    background-color: rgb(255, 0, 0) !important;
+    color: white;
+}
+
+.color-success {
+    background-color: rgb(0, 255, 55) !important;
+    color: rgb(0, 0, 0);
+}
+
+.text-title-lg {
+    font-weight: bold;
+    font-size: 2.5em;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.text-subtitle {
+    font-weight: bold;
+    font-size: 1.5em;
+    word-wrap: break-word;
+    text-align: center;
+    margin: 20px;
+}
+
+.content {
+    flex: 1;
+    position: absolute;
+    top:50;
+    width: 30%;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 20px 40px 20px 40px;
+}
+
+.btn-submit {
+    background-color: #57B846;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: white;
+    width: 80%;
+    margin: 20px 5px;
+    padding: 15px 20px 15px 20px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-submit:hover {
+    transition: 0.5s;
+    background-color: #343734;
+    border-radius: 30px;
+    width: 80%;
+    padding: 15px 40px 15px 40px;
+}
+
+.btn-enquete {
+    position: relative;
+    background-color: #343734;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: white;
+    width: 90%;
+    padding: 15px 20px 15px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-enquete:hover {
+    transition: 0.5s;
+    background-color: #343734 !important;
+    cursor: pointer;
+}
+
+.data {
+    border-radius: 20px;
+    background-color: rgb(17, 17, 17);
+    font-weight: bold;
+    color: white;
+    padding: 10px 10px;
+}
+
+.form {
+    display: flex;
+    max-width: 100%;
+    min-width: 95%;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+/* Global Presets */
+body {
+    background-color: #F7FEFF;
+    font-family: "Century Gothic";
+    background-image: url("../img/background-min.jpg");
+}
+
+input {
+    padding: 15px 15px 15px 40px;
+    margin-bottom: 30px;
+    color:rgb(66, 66, 66);
+    margin-top: 10px;
+    font-size: 1.2em;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(197, 197, 197);
+}
+
+input:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0.5;
+    outline-color: #4191A8;
+}
