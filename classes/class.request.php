@@ -42,6 +42,13 @@ Class Request {
             $return['poll'] = $this->__query->DeletePoll($where);
 
             echo json_encode((object)$return);
+        } else if($_dados['func'] == 'atualizaVotos') {
+
+            $_where['id_enquete'] = $_dados['id'];
+
+            $return['options'] = $this->__query->QueryPDO('tab_enquete_opcao', $_where);
+
+            echo json_encode((object)$return);
         }
     }
 

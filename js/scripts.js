@@ -105,3 +105,32 @@ function DeletePollEvent(e) {
         }
     }
 }
+
+function atualizaVotos() {
+
+    window.setTimeout(id => {
+        var id = document.getElementById("id_enquete").value;
+
+        var req = new XMLHttpRequest();
+        req.open('POST', '../classes/class.request.php', true);
+        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        req.onreadystatechange = function (e) {
+            if(e.target.readyState == 4) {
+                if(e.target.status == 200) {
+                    var res = JSON.parse(e.target.responseText);
+                    var cont = res.options.contador;
+                    var resp = res.options;
+                    for(var a=0; a<cont; a++) {
+                        document.getElementById("votes_"+resp[a].id).innerText = resp[a].votes;
+                        console.log(resp[a]);
+                    }
+                } else if (e.target.status == 404) {
+                    console.log("Arquivo não encontrado");
+                }
+            }
+        };
+        req.send('func=atualizaVotos&id='+id);
+
+        atualizaVotos(id);
+    }, 3000);
+}
