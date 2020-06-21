@@ -138,8 +138,8 @@ class Query {
         }
 
         /**
-         * Método fazer a consulta
-         * @param string $_dados
+         * Generic Query Method
+         * @param string $_order_by
          * @param string $_table
          * @param string $_where
          * @return mixed
@@ -168,6 +168,12 @@ class Query {
 
         }
 
+        /** Generic Insert with PDO
+         * @params mixed $_dados
+         * @params mixed $_table
+         * @params mixed $_nokey
+         * @return mixed
+         */
         public function InsertPDO($_dados, $_table, $_nokey = false)
         {
             foreach ($_dados as $key => $value) {
@@ -186,7 +192,7 @@ class Query {
         }
 
     /**
-     * Método fazer o UPDATE Genericamente
+     * Generic Update method
      * @param string $_dados
      * @param string $_table
      * @param string $_where
@@ -257,6 +263,12 @@ class Query {
             }
         }
 
+        /**
+         * Method to check the date status
+         * @param string $_date_start
+         * @param string $_date_end
+         * @return mixed
+         */
         public function DateTest($_date_start, $_date_end) {
 
             $now = date("Y-m-d");
@@ -278,6 +290,11 @@ class Query {
             }
         }
 
+        /**
+         * Method to query the polls
+         * @param string $_id
+         * @return mixed
+         */
         public function ShowPoll($_id) {
 
             $this->PDOClear();
@@ -302,7 +319,11 @@ class Query {
 
             return $_res;
         }
-
+    /**
+     * Method to query the polls options
+     * @param string $_id
+     * @return mixed
+     */
     public function ShowPollOptions($_id) {
 
         $this->PDOClear();
@@ -324,6 +345,11 @@ class Query {
         return $_res;
     }
 
+    /**
+     * Method to delete Polls Options
+     * @param string $_dados
+     * @return mixed
+     */
     public function DeleteOptions($_dados) {
 
         $this->PDOClear();
@@ -343,6 +369,11 @@ class Query {
         return $_res;
     }
 
+    /**
+     * Method to delete the poll
+     * @param string $id
+     * @return mixed
+     */
     public function DeletePoll($id) {
 
         $this->PDOClear();
