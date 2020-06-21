@@ -10,10 +10,16 @@
             $cons = $__query->QueryPDO('tab_enquete','','ORDER BY date_end desc');
         ?>
 
-            <div class="container">
-                <a href="views/new_poll.php" class="btn-submit">NOVA ENQUETE</a>
-                <a href="views/my_poll.php" class="btn-submit">MINHAS ENQUETES</a>
-                <a href="views/logout.php" class="btn-submit color-danger">SAIR</a>
+            <div class="container flex-wrap row">
+                <div class="div-botao">
+                    <a href="views/new_poll.php" class="btn-submit">NOVA ENQUETE</a>
+                </div>
+                <div class="div-botao">
+                    <a href="views/my_poll.php" class="btn-submit">MINHAS ENQUETES</a>
+                </div>
+                <div class="div-botao">
+                    <a href="views/logout.php" class="btn-submit color-danger">SAIR</a>
+                </div>
             </div>
 
             <div class="container-lg column">

@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+error_reporting(0);
 
 if(!isset($_SESSION['email'])) {
     header("Location: login.php");
@@ -62,13 +63,13 @@ if(isset($_GET['cad'])) {
                         </div>
                     </div>
                 </div>
-                <div class="item-form column">
+                <div class="item-form">
                     <b>OPÇÃO 1:</b><br>
-                    <input type="text" name="opcao_1" placeholder="Digite a opção" required><br>
+                    <input type="text" name="opcao_1" placeholder="Digite a opção" maxlength="50" required><br>
                     <b>OPÇÃO 2:</b><br>
-                    <input type="text" name="opcao_2" placeholder="Digite a opção" required><br>
+                    <input type="text" name="opcao_2" placeholder="Digite a opção" maxlength="50" required><br>
                     <b>OPÇÃO 3:</b><br>
-                    <input type="text" name="opcao_3" placeholder="Digite a opção" required><br>
+                    <input type="text" name="opcao_3" placeholder="Digite a opção" maxlength="50" required><br>
                     <button id="botao_plus" class="btn-submit" data-num="3" onclick="AdicionarCampo(this)">+</button><br>
                     <button type="submit" class="btn-submit">CRIAR</button>
                 </div>

@@ -10,6 +10,7 @@
     margin: auto auto;
     display: flex;
     justify-content: center;
+    padding: 30px;
 }
 
 .flex {
@@ -18,6 +19,10 @@
 
 .flex-wrap {
     flex-wrap: wrap;
+}
+
+.mr {
+    margin-right: 30px;
 }
 
 .text-center {
@@ -40,9 +45,10 @@
     justify-content: space-between;
 }
 
-.text-center {
+.center {
     justify-content: center;
     text-align: center;
+    align-items: center;
 }
 
 .bg-light{
@@ -72,32 +78,17 @@
 }
 
 .item-form {
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: center;
-    text-align: center;
 }
 
-.item-vote {
-    align-items: center;
-    text-align: center;
+.input-enquete {
     display: flex;
-    justify-content: space-between;
-}
-
-.vote-content {
-    width: 60%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.item-vote:nth-child(1) {
-    width: 400px;
-    
-}
-
-.item-vote:nth-child(2) {
-    width: 400px;
+    width: 100%;
 }
 
 .item:nth-child(1) {
@@ -186,18 +177,18 @@
     background-color: #343734;
     border-radius: 30px;
     width: 80%;
-    padding: 15px 40px 15px 40px;
+    padding: 15px 25px 15px 25px;
 }
 
 .btn-enquete {
-    position: relative;
     background-color: #343734;
     border-radius: 30px;
     border: none;
     font-weight: bold;
     font-size: 1.2em;
     color: white;
-    width: 90%;
+    text-align: center;
+    width: 100%;
     padding: 15px 20px 15px 20px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -223,6 +214,38 @@
     min-width: 95%;
     padding: 10px 20px;
     border-radius: 20px;
+}
+
+.div-botao {
+    margin: 0px 10px;
+}
+
+.vote-div {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.vote-item {
+    word-wrap: break-word;
+    justify-content: center;
+}
+
+.vote-item:nth-child(1) {
+    width: 400px;
+}
+
+.vote-item:nth-child(2) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.vote-item:nth-child(3) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
 }
 
 /* Global Presets */

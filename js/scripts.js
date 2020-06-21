@@ -11,6 +11,8 @@ function AdicionarCampo(data) {
     var text = document.createTextNode("OPÇÃO "+new_num+":");
     tag_1.innerText = "OPÇÃO "+new_num+":";
     tag_3.setAttribute('type', 'text');
+    tag_3.setAttribute('maxlength', '50');
+    tag_3.setAttribute('class', 'input-enquete');
     tag_3.setAttribute('name', 'opcao_'+new_num);
     tag_3.setAttribute('placeholder', 'Digite a opção');
 
