@@ -1,5 +1,8 @@
--- CREATE A USER
+-- CREATE DATABASE
 
+CREATE SCHEMA `db_enquete` ;
+
+-- CREATE A USER
 CREATE USER 'admin'@'localhost' IDENTIFIED BY '123456';
 GRANT ALL PRIVILEGES ON db_enquete.* TO 'admin'@'localhost';
 
