@@ -1,36 +1,27 @@
 <?php
 
 class Query {
-
         private $_conn;
         private $_bind;
         private $_where;
         private $_my_conn;
-//        private $__html;
-
-        public function __construct() {
-
-        }
 
         /** Start database connection */
-        private function DB_Connect() {
-
+        private function DB_Connect()
+        {
             $this->_my_conn = mysqli_connect($_SESSION['host'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['db']);
     
             try {
                 $this->_conn = new PDO("mysql:host={$_SESSION['host']};dbname={$_SESSION['db']}", $_SESSION['user'], $_SESSION['pass']);
                 $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
             } catch (PDOException $e) {
-    
                 echo ("ERRO CONEXAO PDO");
-    
             }
         }
 
         /** Close database connection */
-        private function DB_Close() {
-
+        private function DB_Close()
+        {
             $this->_conn = null;
             mysqli_close($this->_my_conn);
 
@@ -38,41 +29,38 @@ class Query {
         }
 
         /**
-         * Set binds method
-         * @param string $_valor
-         * @param string $_nome
+         * Function to mount Bind of PDO
+         * @param string $value
+         * @param string $_name
          * @param string $_campo
-         * @param string $_operador
+         * @param string $_operator
          */
-        private function PDOMontaBind($_valor, $_nome, $_campo = '', $_operador = '=')
+        private function PDOMontaBind($value, $_name, $_campo = '', $_operator = '=')
         {
-
             if ($_campo == '') {
-                $_campo = $_nome;
+                $_campo = $_name;
             }
 
-            if (($_valor <> '')and($_valor <> '%')) {
-
-                if ($_operador == 'like'){
-                    $this->_where[] = "{$_campo} {$_operador} :{$_nome}";
-                    $this->_bind[$_nome] = "%{$_valor}%";
-                } else if ($_operador == 'between'){
-                    $this->_where[] = "{$_campo} {$_operador} :{$_nome}_v1 AND :{$_nome}_v2";
-                    $this->_bind["{$_nome}_v1"] = $_valor[0];
-                    $this->_bind["{$_nome}_v2"] = $_valor[1];
-                } else if ($_operador == 'in') {
-                    $this->_where[] = "{$_campo} {$_operador}(:{$_nome})";
-                    $this->_bind[$_nome] = $_valor;
+            if (($value <> '')and($value <> '%')) {
+                if ($_operator == 'like') {
+                    $this->_where[] = "{$_campo} {$_operator} :{$_name}";
+                    $this->_bind[$_name] = "%{$value}%";
+                } else if ($_operator == 'between') {
+                    $this->_where[] = "{$_campo} {$_operator} :{$_name}_v1 AND :{$_name}_v2";
+                    $this->_bind["{$_name}_v1"] = $value[0];
+                    $this->_bind["{$_name}_v2"] = $value[1];
+                } else if ($_operator == 'in') {
+                    $this->_where[] = "{$_campo} {$_operator}(:{$_name})";
+                    $this->_bind[$_name] = $value;
                 } else {
-                    $this->_where[] = "{$_campo} {$_operador} :{$_nome}";
-                    $this->_bind[$_nome] = $_valor;
+                    $this->_where[] = "{$_campo} {$_operator} :{$_name}";
+                    $this->_bind[$_name] = $value;
                 }
-
             }
         }
 
         /**
-         * Set where method
+         * Function to build Where
          */
         private function PDOMontaWhere()
         {
@@ -82,7 +70,7 @@ class Query {
         }
 
         /**
-         * Clear PDO values
+         * Clear All PDO
          */
         private function PDOClear()
         {
@@ -97,8 +85,8 @@ class Query {
          * @param string $_action
          * @return mixed
          */
-        public function Query_SQL($_sql, $_bind = '', $_action = 'QUERY') {
-
+        public function Query_SQL($_sql, $_bind = '', $_action = 'QUERY')
+        {
             $this->DB_Connect();
 
             if (($_bind == '') and (isset($this->_bind))){
@@ -114,26 +102,22 @@ class Query {
             $_query->execute();
 
             if ($_action == 'QUERY') {
-
                 $rows = $_query->fetchAll(PDO::FETCH_ASSOC);
                 $a = 0;
-                foreach ($rows as $key => $value) {
 
-                    $_retorno[$key] = $value;
+                foreach ($rows as $key => $value) {
+                    $_return[$key] = $value;
                     $a++;
                 }
-                $_retorno['contador'] = $a;
+                $_return['contador'] = $a;
 
-                return $_retorno;
+                return $_return;
             } else if ($_action == 'INSERT') {
                 return $this->_conn->lastInsertId();
-
             } else if ($_action == 'UPDATE') {
                 return $_query->rowCount();
-
             } else if ($_action == 'DELETE') {
                 return $_query->rowCount();
-
             }
         }
 
@@ -165,7 +149,6 @@ class Query {
               {$_order_by}";
 
             return $this->Query_SQL($_sql,'', 'QUERY');
-
         }
 
         /** Generic Insert with PDO
@@ -221,7 +204,6 @@ class Query {
             {$where_final}";
 
         return $this->Query_SQL($_sql, $_bind, 'UPDATE');
-
     }
 
 
@@ -231,9 +213,7 @@ class Query {
          */
         public function RegisterUser($_dados)
         {
-
             $this->PDOClear();
-
             $this->PDOMontaBind($_dados['email'], 'email', 'email');
             $this->PDOMontaBind($_dados['password'], 'password', 'password');
 
@@ -251,11 +231,9 @@ class Query {
 
             try {
                 $_res = $this->Query_SQL($_sql, '', 'INSERT');
-
                 session_start();
                 $_SESSION['email'] = $_dados['email'];
                 $_SESSION['id_user'] = $_res;
-
 
                 return $_res;
             } catch (PDOException $e) {
@@ -269,10 +247,10 @@ class Query {
          * @param string $_date_end
          * @return mixed
          */
-        public function DateTest($_date_start, $_date_end) {
-
+        public function DateTest($_date_start, $_date_end)
+        {
             $now = date("Y-m-d");
-            if($now >= $_date_start && $now <= $_date_end) {
+            if ($now >= $_date_start && $now <= $_date_end) {
                 $retorno['msg'] = "VISUALIZAR";
                 $retorno['color'] = 'color-success';
                 $retorno['status'] = 1;
@@ -295,12 +273,10 @@ class Query {
          * @param string $_id
          * @return mixed
          */
-        public function ShowPoll($_id) {
-
+        public function ShowPoll($_id)
+        {
             $this->PDOClear();
-
             $this->PDOMontaBind($_id, 'b_id', 'e.id');
-
             $this->PDOMontaWhere();
 
             $_sql = "
@@ -310,12 +286,8 @@ class Query {
                     tab_enquete e 
                     $this->_where
             ;";
-
             $_res = $this->Query_SQL($_sql);
-
             $_res['options'] = $this->ShowPollOptions($_res[0]['id']);
-
-
 
             return $_res;
         }
@@ -324,12 +296,10 @@ class Query {
      * @param string $_id
      * @return mixed
      */
-    public function ShowPollOptions($_id) {
-
+    public function ShowPollOptions($_id)
+    {
         $this->PDOClear();
-
         $this->PDOMontaBind($_id, 'b_id_enquete', 'id_enquete');
-
         $this->PDOMontaWhere();
 
         $_sql = "
@@ -339,7 +309,6 @@ class Query {
                     tab_enquete_opcao e 
                     $this->_where
             ;";
-
         $_res = $this->Query_SQL($_sql);
 
         return $_res;
@@ -350,12 +319,10 @@ class Query {
      * @param string $_dados
      * @return mixed
      */
-    public function DeleteOptions($_dados) {
-
+    public function DeleteOptions($_dados)
+    {
         $this->PDOClear();
-
         $this->PDOMontaBind($_dados['id_enquete'], 'b_id_enquete', 'id_enquete');
-
         $this->PDOMontaWhere();
 
         $_sql = "
@@ -374,12 +341,10 @@ class Query {
      * @param string $id
      * @return mixed
      */
-    public function DeletePoll($id) {
-
+    public function DeletePoll($id)
+    {
         $this->PDOClear();
-
         $this->PDOMontaBind($id['id'], 'b_id', 'id');
-
         $this->PDOMontaWhere();
 
         $_sql = "
